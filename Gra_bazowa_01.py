@@ -200,7 +200,7 @@ def game_loop():
 
     ##############################
     # Kluczowa pętla gry.
-    while playGame:
+    while play_game:
         u"""Jak napisano wyżej, gra to jedna wielka pętla while,
         każdy przebieg ciała tej pętli to jednak klatka (frame) gry."""
 
@@ -332,46 +332,43 @@ def game_loop():
         ##############################
         # Wyświetlanie grafiki
         
-        u"""Kiedy ostatni raz sprawdzałem, najwięcej mocy obliczeniowej
+        u"""Jest kilka powodów dla których należy najpierw wszystko policzyć,
+        utworzyć dane numryczne wszystkich obiektów graficznych, a dopiero
+        potem narysować nową klatkę animacji.
+
+        1) Kiedy ostatni raz sprawdzałem, najwięcej mocy obliczeniowej
         pochłania nie utworzenie numerycznych danych obiektów graficznych
-        w pamięci, lecz narysowanie ich na ekranie. Brzmi to rozsądnie,
-        lecz w tej muszę to dalej sprawdzić.
+        w pamięci, lecz właśnie narysowanie ich na ekranie. Brzmi to
+        rozsądnie, lecz muszę się w tej materii upewnić.
 
-        Między innymi dlatego najpierw wykonuje się wszystkie obliczenia,
-        w tym obliczenia fizyki, uwzględnia działanie graczy, etc.
-        Dopiero gdy już jest gotowy zestaw danych, opisujący położenie
-        obiektów, ich prędkość 
-        Dlatego zwykle najpierw wykonujemy obliczenia, gdzie wyko      w tym wypadku fizyki, przechwytujemy działania gracza etc.,
-        w wyniku których mamy gotowy zestaw danych,
-        opisujących powożenia obiektów, ich prędkości, oświetlenie etc.
-        Te dane, to prawie gotowy obraz tego co zobaczymy na ekranie.
-        Jednak sam proces wyświetlenia go,
-        pochłonie większość mocy obliczeniowej."""
+        2) Załóżmy, że wedle obliczeń dwa obiekty powinny znajdować się
+        w tym samym miejscu, np. ciało przenika przez ścianę. Stosowane
+        algorytmy numeryczne często prowadzą do takiej sytuacji. Czego
+        jednak gracz nie widzi, to nie jest bugiem. Dlatego jeżeli
+        wykryjemy to zdarzenie przed wyświetleniem klatki na ekranie,
+        to możemy je poprawić ręcznie i pokazać animację pozbawiony błędu.
+        
+        Dlatego najpierw przechwytujemy działanie graczy, wykonujemy
+        obliczenia AI, fizyki, oświetlenia, dokonujemy poprawek etc.,
+        w wyniku których mamy gotowy zestaw danych i dopiero wtedy
+        go wyświetlamy. Nawet utworznie danych odnośnie obiektów graficznych
+        lepiej jest zrobić przed załadowaniem wszystkiego na ekran."""
 
-        u"""Podkreślmy, wszystkie obliczenia, uwzględnienie wykonanych
-        przez gracza działań, etc., zostało już wykonane
-        w poprzedniej części pętli.
-        Teraz musimy tylko narysować ich wynik."""
+        # gameDisplay.fill(white) # W pamięci komputera ,,wypełniamy'' tło
+        # kolorem białym.
+        game_display.blit(background_img, (0, 0)) # W pamięci komputera
+        # rysujemy tło gry.
 
-        # gameDisplay.fill(white) # Malujemy tło na biało.
-        gameDisplay.blit(tloImg, (0, 0)) # Rysujemy tło gry
-        # w pamięci komputera.
-        cos(x, y) # Rysujemy ,,bohatera'' w punkcie x, y,
-        # w pamięci komputera.
+        hero(x, y) # Wciąż w pamięci komputera rysujemy ,,bohatera''.
 
-        u"""W jaki sposób zostało dobrane położenie obiektu,
-        tak by znajdował się na czarnej powierzchni? Metodą prób i błędów."""
+        u"""W tym momencie tło i ,,bohater'' są ,,narysowani'' W PAMIĘCI
+        komputera, ale nie są wyświetlani na ekranie komputera. Dopiero
+        poniższa komenda to robi."""
 
-        u"""W tym momencie tło i ,,bohater'' są ,,narysowani''
-        w pamięci komputera, ale nie są wyświetleni na ekranie komputera.
-        Dopiero poniższa komenda to robi.
-        Szczerze mówiąc nie wiem która z tych operacji
-        pochłania więcej mocy komputera."""
-
-        pygame.display.update() # Upgradeuje całe okno, czyli wyświetlamy
+        pygame.display.update() # Upgradeuje całe okno, czyli rysujemy
         # je od nowa na podstawie danych z powyższej części pętli.
 
-        clock.tick(frames_per_second) # Ilość klatek na sekundę,
+        clock.tick(frames_per_second) # Ilość klatek animacji na sekundę,
         # czyli ile razy zegar ma tyknąć w tym czasie.
 
 
@@ -383,7 +380,9 @@ def game_loop():
 game_loop() # Uruchamiamy grę, wywołująć funkcję game_loop. Jedna gra
 # to jedno wywołanie tej funkcji.
 
-pygame.quit() # PyGame tak jak został włączony, musi zostać wyłączony.
-# Również w tym przypadku, nie znam drugiego modułu gdzie trzeba to robić.
+pygame.quit()
+u"""PyGame tak jak został włączony (zainicjalizowany),
+# musi zostać odpowienio wyłączony. Nie znam drugiego modułu Pythona,
+# gdzie trzeba to robić."""
 
-quit() # Wychodzimy z Pythona.
+quit() # Wychodzimy z Pythona. Ta opcja może się przydać.
