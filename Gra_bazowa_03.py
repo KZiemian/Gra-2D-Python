@@ -58,15 +58,20 @@ powłoki czy programu informacje o danej funkcji czy klasie.
 Mam nadzieję, że będzie się je Państwu dobrze czytało."""
 
 
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+u"""Pliki 03-05 ilustrują, jak zrobić w Pythonie prostą grę, pozbawioną
+co prawda fizyki, ale taką w którą można grać. Osoby niezainteresowane tym
+mogą je z czystym sumieniem pominąć."""
+
+
+
 
 ######################################################################
 # Importowanie modułów/bibliotek
 
 import pygame # Główny moduł Pythona z którego będziemy korzystać
 # (zaskakujące). Pozwala w łatwy sposób wyświetlać grafikę 2D.
-
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 import random # Moduł zawierający generatory liczb pseudolosowych.
 
 
@@ -156,6 +161,22 @@ def hero(x, y):
     # bardzo krótka.
 
 
+    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
+
+def things(thing_x, thing_y, thing_w, thing_h, color):
+    u"""Funkcja ta rysuje ,,coś'' jako prostokąt o położeniu
+    (thing_x, thing_y), szerokości thing_w i wysokości thing_h
+    oraz kolorze "color". Celem tej gry, będzie ich unikanie, gdy się
+    z jednym zderzymy, game over.
+
+    W tej wersji najście na siebie ,,bohatera'' i ,,czegoś'' nie ma jeszcze
+    żadnych konsekwencji. Aby coś się stało, potrzeba jeszcze trochę kodu."""
+
+    pygame.draw.rect(gameDisplay, color, [thing_x, thing_y, thing_w, thing_h])
+
+
 
 ######################################################################
 # Stałe o różnym charakterze używane w grze
@@ -203,7 +224,30 @@ def game_loop():
     u"""Zmienna do przesuwania ,,bohater'' w kierunku osi x. Pozycja
     ,,bohatera'' zmieni się o tyle pikseli (jeśli dobrze rozumiem)
     w następnej klatce animacji."""
-    delta_y = 0 
+    delta_y = 0
+
+
+    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
+    thing_start_x = random.randrange(0, display_width)
+    u"""W tym miejscu po raz w p pierwszy pojawi się thing. Gdyby za każdym
+    razem pojawiał się w tym samym miejscu, gra byłaby nudna.
+    Dlatego wykorzystujemy generator liczb pseudolowych
+    z modułu random. Funkcja randrange z modułu random po prostu generuje w pseudolosowy
+    sposób liczbę z zakresu od 0 do "display_width"."""
+
+    thing_start_y = -600
+    u"""Zaczynamy rysować thing poza ekrane, tak by mieć chwilę
+    czasu na początku gry, zanim się pojawi. Tą zmienną można by
+    zasadniczo umieścić poza funkcją game_loop(), ale jest bardziej
+    naturalne losować thing_startx, dopiero po rozpoczęciu gry.
+    Dlatego wszystkie te zmienne są tu."""
+
+    thing_speed = 7 # Jak szybko się thing porusza.
+    thing_width = 100 # Jak szeroki będzien.
+    thing_height = 100 # Jak wysoki będzie
+
 
 
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
