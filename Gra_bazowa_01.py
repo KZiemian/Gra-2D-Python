@@ -1,11 +1,16 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
 
-u"""Na podstawie kursu H. S. Kinsleya, z kanału sentdex, YouTube:
+u"""Autor: Kamil Ziemian
+Na podstawie kursu H. S. Kinsleya ,,Game Development in Python 3 With
+PyGame'', z jego kanału YouTubwego sentdex:
 https://www.youtube.com/watch?v=ujOTNg17LjI&index=1&list=PLQVvvaa0QuDdLkP8MrOXLe_rKuf6r80KO
+Poprawki: Gabriela Kaczka, Filip Ziętkowski
 
-Na tym kanale jest dużo innych cennych materiałów, można również znaleźć
-dodatkową pomoc w instalacji PyGame'a na Windowsie."""
+
+Na kanale Kinsleya jest dużo innych cennych materiałów, można tam również
+znaleźć dodatkową pomoc w instalacji PyGame'a na Windowsie."""
+
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 u"""Każdy dobry pomysł na usprawnienie tej gry, będzie pozytywnie wpływał
@@ -43,9 +48,9 @@ część tych plików stanowią opisy, wyjaśnienia, uwagi, etc.
 
 Proszę wziąć jednak pod uwagę następujący fakt: na tych zajęciach zawsze są
 osoby, które nie potrafią same ani napisać ani zrozumieć kodu w Pythonie.
-Moje komenatrze są skierowane własnie dla taki osób, aby miały możliwie dobre
-materiały do nauki. Ci którzy dobrze znają porgramowanie mogą napisać program
-samodzielnie, bądź skorzystać z pliku Gra_bazowa_01_kod.py.
+Moje komentarze są skierowane właśnie dla takich osób, aby miały możliwie
+dobre materiały do nauki. Ci którzy dobrze znają programowania mogą napisać
+program samodzielnie, bądź skorzystać z pliku Gra_bazowa_01_kod.py.
 
 Wiem, że istnieje standard pisania notek dokumentacyjnych Pythona,
 choć zwykle muszę sięgać do PEP 257. Niestety w tych skryptach się do niego
@@ -103,17 +108,17 @@ u"""Tworzymy okienko w którym będzie wyświetlana gra. Jako argument podajemy
 dwuelementowa krotkę (ang. tuple), zawierającą rozmiar/rozdzielczość
 okienka, które zostanie utworzone."""
 
-pygame.display.set_caption('Gra w fizyke') # Ustawinie nazwy okna z grą.
+pygame.display.set_caption('Gra w fizyke') # Ustawianie nazwy okna z grą.
 
 
 
 ##############################
-# Ustawienie częstości odświerzania obrazu
+# Ustawienie częstości odświeżania obrazu
 
 clock = pygame.time.Clock() # Tworzy zegar, który zlicza ilość klatek
 # na sekundę.
 
-frames_per_second = 30 # Zmienna definująca ilość klatek na sekundę,
+frames_per_second = 30 # Zmienna definiująca ilość klatek na sekundę,
 # lub po ,,polsku'' fpsów.
 
 
@@ -122,7 +127,7 @@ frames_per_second = 30 # Zmienna definująca ilość klatek na sekundę,
 
 hero_img = pygame.image.load('Bohater.png')
 u"""Ładujemy do gry obrazek przedstawiający ,,bohatera'', który znajduje się
- w pliku Cos.png. Obrazek ma być w tym samym katalogu/folderze, inaczej
+ w pliku Bohater.png. Obrazek ma być w tym samym katalogu/folderze, inaczej
  trzeba będzie podawać ścieżkę dostępu. Zmieniając nazwę pliku zawierającego
  rysunek, proszę pamiętać, że musi się być zawarta w cudzysłowie.
  (To wszystko można zrobić w bardziej wyrafinowany sposób, ale ten komentarz
@@ -177,8 +182,8 @@ def game_loop():
     studiowałem fizykę. Z tego powodu nie wiem jakie są standardy nazywania
     zmiennych i funkcji w branży produkcji gier komputerowych, za to
     przywykłem do tych stosowanych w naukach fizycznych oraz matematyce
-    i ich właśnie używam. Jak mówie, nie wiem czy są dobre jeśli chodzi
-    o standardy gamedevu, ale mają tę zaletę, że zwykle pozostają się
+    i ich właśnie używam. Jak powiedziałem, nie wiem czy są dobre jeśli
+    chodzi o standardy gamedevu, ale mają tę zaletę, że zwykle pozostają się
     w zgodzie z oznaczeniami wzorów, które zwykle się Państwu wygooglują."""
 
     u"""Animację ruchu w grze tworzymy, poprzez rysowanie obiektów w każdej
@@ -253,9 +258,9 @@ def game_loop():
 
             if event.type == pygame.KEYDOWN:
                 u"""Sprawdzamy czy jakiś klawisz został WCIŚNIĘTY. Jeżeli
-                WCIŚNIEMY jakiś klawisz i go przytrzymamy, to ostrzymujemy
+                WCIŚNIEMY jakiś klawisz i go przytrzymamy, to otrzymujemy
                 tylko jedno wydarzenie pygame.KEYDOWN, w tej klatce w której
-                NACIŚĘLIŚMY klawisz. Aby uzyskać ten sygnał ponownie,
+                NACISNĘLIŚMY klawisz. Aby uzyskać ten sygnał ponownie,
                 należy WCISNĄĆ jakiś inny klawisz.
 
                 Jeżeli więc wciśniemy klawisz strzałki w lewo i przytrzymamy,
@@ -324,8 +329,8 @@ def game_loop():
         u"""W tym momencie taki kod jest zupełnie wystarczający:
         x_(n + 1) = x_n + delta_x,
         y_(n + 1) = y_n + delta_y.
-        Przy bardziej zawanoswanych metodach, może być wymagany bardziej
-        skomplikownay kod."""
+        Przy bardziej zaawansowanych metodach, może być wymagany bardziej
+        skomplikowany kod."""
 
 
 
@@ -333,7 +338,7 @@ def game_loop():
         # Wyświetlanie grafiki
         
         u"""Jest kilka powodów dla których należy najpierw wszystko policzyć,
-        utworzyć dane numryczne wszystkich obiektów graficznych, a dopiero
+        utworzyć dane numeryczne wszystkich obiektów graficznych, a dopiero
         potem narysować nową klatkę animacji.
 
         1) Kiedy ostatni raz sprawdzałem, najwięcej mocy obliczeniowej
@@ -351,7 +356,7 @@ def game_loop():
         Dlatego najpierw przechwytujemy działanie graczy, wykonujemy
         obliczenia AI, fizyki, oświetlenia, dokonujemy poprawek etc.,
         w wyniku których mamy gotowy zestaw danych i dopiero wtedy
-        go wyświetlamy. Nawet utworznie danych odnośnie obiektów graficznych
+        go wyświetlamy. Nawet utworzenie danych odnośnie obiektów graficznych
         lepiej jest zrobić przed załadowaniem wszystkiego na ekran."""
 
         # gameDisplay.fill(white) # W pamięci komputera ,,wypełniamy'' tło
@@ -365,7 +370,7 @@ def game_loop():
         komputera, ale nie są wyświetlani na ekranie komputera. Dopiero
         poniższa komenda to robi."""
 
-        pygame.display.update() # Upgradeuje całe okno, czyli rysujemy
+        pygame.display.update() # Upgraduje całe okno, czyli rysujemy
         # je od nowa na podstawie danych z powyższej części pętli.
 
         clock.tick(frames_per_second) # Ilość klatek animacji na sekundę,
@@ -377,12 +382,12 @@ def game_loop():
 
 
 
-game_loop() # Uruchamiamy grę, wywołująć funkcję game_loop. Jedna gra
+game_loop() # Uruchamiamy grę, wywołując funkcję game_loop. Jedna gra
 # to jedno wywołanie tej funkcji.
 
 pygame.quit()
 u"""PyGame tak jak został włączony (zainicjalizowany),
-# musi zostać odpowienio wyłączony. Nie znam drugiego modułu Pythona,
+# musi zostać odpowiednio wyłączony. Nie znam drugiego modułu Pythona,
 # gdzie trzeba to robić."""
 
 quit() # Wychodzimy z Pythona. Ta opcja może się przydać.

@@ -1,11 +1,16 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
 
-u"""Na podstawie kursu H. S. Kinsleya, z kanału sentdex, YouTube:
+u"""Autor: Kamil Ziemian
+Na podstawie kursu H. S. Kinsleya ,,Game Development in Python 3 With
+PyGame'', z jego kanału YouTubwego sentdex:
 https://www.youtube.com/watch?v=ujOTNg17LjI&index=1&list=PLQVvvaa0QuDdLkP8MrOXLe_rKuf6r80KO
+Poprawki: Gabriela Kaczka, Filip Ziętkowski
 
-Na tym kanale jest dużo innych cennych materiałów, można również znaleźć
-dodatkową pomoc w instalacji PyGame'a na Windowsie."""
+
+Na kanale Kinsleya jest dużo innych cennych materiałów, można tam również
+znaleźć dodatkową pomoc w instalacji PyGame'a na Windowsie."""
+
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 u"""Każdy dobry pomysł na usprawnienie tej gry, będzie pozytywnie wpływał
@@ -161,8 +166,8 @@ def hero(x, y):
     # bardzo krótka.
 
 
-    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 
 
 def things(thing_x, thing_y, thing_w, thing_h, color):
@@ -231,21 +236,23 @@ def game_loop():
     # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 
     thing_start_x = random.randrange(0, display_width)
-    u"""W tym miejscu po raz w p pierwszy pojawi się thing. Gdyby za każdym
-    razem pojawiał się w tym samym miejscu, gra byłaby nudna.
-    Dlatego wykorzystujemy generator liczb pseudolowych
-    z modułu random. Funkcja randrange z modułu random po prostu generuje w pseudolosowy
-    sposób liczbę z zakresu od 0 do "display_width"."""
+    u"""Losujemy położenie ,,czegoś'' na ekranie. Gdyby za każdym razem
+    pojawiał się w tym samym miejscu, gra byłaby nudna, dlatego
+    wykorzystujemy generator liczb pseudolowych z modułu random.
+    Funkcja randrange z tego modułu po prostu generuje w pseudolosowy
+    sposób liczbę z zakresu od 0 do display_width."""
 
     thing_start_y = -600
-    u"""Zaczynamy rysować thing poza ekrane, tak by mieć chwilę
-    czasu na początku gry, zanim się pojawi. Tą zmienną można by
-    zasadniczo umieścić poza funkcją game_loop(), ale jest bardziej
-    naturalne losować thing_startx, dopiero po rozpoczęciu gry.
-    Dlatego wszystkie te zmienne są tu."""
+    u"""Na początku umieszczamy ,,coś'' powyżej ekranu, tak by mieć chwilę
+    czasu na początku gry, zanim on się pojawi. Tę zmienną można chyba
+    umieścić poza funkcją game_loop(), ale jest bardziej naturalne losować
+    thing_start_x, dopiero po rozpoczęciu gry, tak by mieć pewność,
+    że się w dwóch grach (raczej) nie powtórzy.
 
-    thing_speed = 7 # Jak szybko się thing porusza.
-    thing_width = 100 # Jak szeroki będzien.
+    Dla porządku, resztę zmienny też tu umieściłem."""
+
+    thing_speed = 7 # Jak szybko się ,,coś'' porusza.
+    thing_width = 100 # Jak szeroki będzie.
     thing_height = 100 # Jak wysoki będzie
 
 
@@ -403,7 +410,34 @@ def game_loop():
             # Analogicznie jak poprzednie, tylko do prawej strony ekranu.
             delta_x = 0.0
             x = x_max
-            
+
+
+        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
+        u"""Sprawdzamy, czy ,,coś'' wyszło poza ekran. Jeśli tak,
+        to zapominamy o nim i tworzymy nowy nad ekranem w pseudolosowym
+        położeniu we współrzędnej x."""
+
+        if thing_starty > display_height:
+            thing_start_y = -thing_height
+            # ,,Coś'' pojawi się zaraz nad ekranem.
+            thing_startx = random.randrange(0, display_width)
+            # Zobacz linia 233 i następne. Znowu, bez tego byłoby nudno.
+        
+        things(thing_start_x, thing_start_y, thing_width, thing_height, black)
+        # Rysujemy thing w zadanym położeniu, z zadanym rozmiarem
+        # i w zadanym kolorze.
+
+        # TRZEBA PRZEMYŚLEĆ KOLEJNOŚĆ TYCH KOMEND. ALE TO MUSZĘ ZROBIĆ
+        # NA ŚWIEŻO
+
+        thing_starty += thing_speed
+        u"""Skoro narysowaliśmy już ,,Coś'', gdzie chcieliśmy, to teraz
+        zmieniamy jego położenie w pionie tak, aby w następnej klatce
+        narysował się niżej."""
+
+
 
         ##############################
         # Wyświetlanie grafiki
@@ -449,8 +483,8 @@ def game_loop():
 
 
 
-##################################################
-
+######################################################################
+######################################################################
 
 
 game_loop() # Uruchamiamy grę, wywołując funkcję game_loop. Jedna gra

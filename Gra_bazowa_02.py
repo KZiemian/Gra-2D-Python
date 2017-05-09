@@ -1,11 +1,15 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
 
-u"""Na podstawie kursu H. S. Kinsleya, z kanału sentdex, YouTube:
+u"""Autor: Kamil Ziemian
+Na podstawie kursu H. S. Kinsleya ,,Game Development in Python 3 With
+PyGame'', z jego kanału YouTubwego sentdex:
 https://www.youtube.com/watch?v=ujOTNg17LjI&index=1&list=PLQVvvaa0QuDdLkP8MrOXLe_rKuf6r80KO
+Poprawki: Gabriela Kaczka, Filip Ziętkowski
 
-Na tym kanale jest dużo innych cennych materiałów, można również znaleźć
-dodatkową pomoc w instalacji PyGame'a na Windowsie."""
+Na kanale Kinsleya jest dużo innych cennych materiałów, można tam również
+znaleźć dodatkową pomoc w instalacji PyGame'a na Windowsie."""
+
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 u"""Każdy dobry pomysł na usprawnienie tej gry, będzie pozytywnie wpływał
@@ -406,8 +410,8 @@ def game_loop():
 
 
 
-##################################################
-
+######################################################################
+######################################################################
 
 
 game_loop() # Uruchamiamy grę, wywołując funkcję game_loop. Jedna gra
