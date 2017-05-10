@@ -30,7 +30,7 @@ u"""W tej wersji gry sterujemy strzałkami w lewo i w prawo."""
 ######################################################################
 
 
-u"""Skrypt ,,Gra_bazowa_1.py'' zawiera minimalną ilość kodu który pozwala
+u"""Skrypt ,,Gra_bazowa_01.py'' zawiera minimalną ilość kodu który pozwala
 grze działać i odpowiadać na działania gracza. Jest ona jednak nudna,
 bo nic się nie dzieje.
 
