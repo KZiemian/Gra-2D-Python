@@ -2,10 +2,11 @@
 #-*- coding: utf-8 -*-
 
 u"""Autor: Kamil Ziemian
-Na podstawie kursu H. S. Kinsleya ,,Game Development in Python 3 With
-PyGame'', z jego kanału YouTubwego sentdex:
+Na podstawie kursu H. S. Kinsleya "Game Development in Python 3 With
+PyGame", z jego kanału YouTubwego sentdex:
 https://www.youtube.com/watch?v=ujOTNg17LjI&index=1&list=PLQVvvaa0QuDdLkP8MrOXLe_rKuf6r80KO
-Poprawki: Gabriela Kaczka, Filip Ziętkowski
+Grafiki "Bohater.png" i "Tlo.png": Barbara Chudzik
+Korekta kodu: Gabriela Kaczka, Filip Ziętkowski
 
 
 Na kanale Kinsleya jest dużo innych cennych materiałów, można tam również
@@ -179,7 +180,7 @@ def things(thing_x, thing_y, thing_w, thing_h, color):
     W tej wersji najście na siebie ,,bohatera'' i ,,czegoś'' nie ma jeszcze
     żadnych konsekwencji. Aby coś się stało, potrzeba jeszcze trochę kodu."""
 
-    pygame.draw.rect(gameDisplay, color, [thing_x, thing_y, thing_w, thing_h])
+    pygame.draw.rect(game_display, color, [thing_x, thing_y, thing_w, thing_h])
 
 
 
@@ -419,10 +420,10 @@ def game_loop():
         to zapominamy o nim i tworzymy nowy nad ekranem w pseudolosowym
         położeniu we współrzędnej x."""
 
-        if thing_starty > display_height:
+        if thing_start_y > display_height:
             thing_start_y = -thing_height
             # ,,Coś'' pojawi się zaraz nad ekranem.
-            thing_startx = random.randrange(0, display_width)
+            thing_start_x = random.randrange(0, display_width)
             # Zobacz linia 233 i następne. Znowu, bez tego byłoby nudno.
         
         things(thing_start_x, thing_start_y, thing_width, thing_height, black)
@@ -432,7 +433,7 @@ def game_loop():
         # TRZEBA PRZEMYŚLEĆ KOLEJNOŚĆ TYCH KOMEND. ALE TO MUSZĘ ZROBIĆ
         # NA ŚWIEŻO
 
-        thing_starty += thing_speed
+        thing_start_y += thing_speed
         u"""Skoro narysowaliśmy już ,,Coś'', gdzie chcieliśmy, to teraz
         zmieniamy jego położenie w pionie tak, aby w następnej klatce
         narysował się niżej."""

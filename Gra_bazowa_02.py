@@ -2,10 +2,12 @@
 #-*- coding: utf-8 -*-
 
 u"""Autor: Kamil Ziemian
-Na podstawie kursu H. S. Kinsleya ,,Game Development in Python 3 With
-PyGame'', z jego kanału YouTubwego sentdex:
+Na podstawie kursu H. S. Kinsleya "Game Development in Python 3 With
+PyGame", z jego kanału YouTubwego sentdex:
 https://www.youtube.com/watch?v=ujOTNg17LjI&index=1&list=PLQVvvaa0QuDdLkP8MrOXLe_rKuf6r80KO
-Poprawki: Gabriela Kaczka, Filip Ziętkowski
+Grafiki "Bohater.png" i "Tlo.png": Barbara Chudzik
+Korekta kodu: Gabriela Kaczka, Filip Ziętkowski
+
 
 Na kanale Kinsleya jest dużo innych cennych materiałów, można tam również
 znaleźć dodatkową pomoc w instalacji PyGame'a na Windowsie."""
