@@ -420,8 +420,8 @@ game_loop() # Uruchamiamy grę, wywołując funkcję game_loop. Jedna gra
 # to jedno wywołanie tej funkcji.
 
 pygame.quit()
-u"""PyGame tak jak został włączony (zainicjalizowany),
-# musi zostać odpowiednio wyłączony. Nie znam drugiego modułu Pythona,
-# gdzie trzeba to robić."""
+u"""PyGame tak jak został włączony (zainicjalizowany), musi zostać
+odpowiednio wyłączony. Nie znam drugiego modułu Pythona, gdzie trzeba
+to robić."""
 
 quit() # Wychodzimy z Pythona. Ta opcja może się przydać.

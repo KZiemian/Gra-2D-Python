@@ -497,3 +497,8 @@ u"""PyGame tak jak został włączony (zainicjalizowany),
 # gdzie trzeba to robić."""
 
 quit() # Wychodzimy z Pythona. Ta opcja może się przydać.
+
+
+
+
+
