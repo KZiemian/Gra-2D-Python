@@ -143,12 +143,12 @@ def hero(x, y):
     ,,Bohatera'' reprezentuje obiekt hero_img, do którego załadowaliśmy
     obrazek przedstawiający go. Sposób rysowania jest następujący:
     lewy górny róg obrazka znajdzie się w punkcie o współrzędnych x, y."""
-    
+
     # Ważne! Ważne! Ważne! Ważne! Ważne! Ważne! Ważne! Ważne! Ważne!
     u"""PyGame używa następującego układu współrzędnych. Położenie (0, 0)
     to lewy górny róg ekranu. Wraz ze wzrostem x idziemy w prawo,
     a ze wzrostem y, w dół."""
-    
+
     game_display.blit(hero_img, (x, y)) # Strasznie dużo pisania, a funkcja
     # bardzo krótka.
 
@@ -163,7 +163,7 @@ Jeśli dobrze rozumiem jednostką jest jeden piksel, jednak jeśli tak jest,
 to nie wiem co dokładnie PyGame robi z ułamkową odległością w pikselach."""
 
 
-    
+
 ######################################################################
 # Główna pętla gry
 
@@ -195,7 +195,7 @@ def game_loop():
     u"""Zmienna do przesuwania ,,bohater'' w kierunku osi x. Pozycja
     ,,bohatera'' zmieni się o tyle pikseli (jeśli dobrze rozumiem)
     w następnej klatce animacji."""
-    delta_y = 0 
+    delta_y = 0
 
 
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -212,19 +212,19 @@ def game_loop():
 
         ##############################
         # Pętla sprawdzająca wydarzenia.
-        
+
         for event in pygame.event.get():
             u"""PyGame cały czas zbiera ogromną ilość danych o działaniu
             gracza, pygame.event.get() to metoda która zwraca listę
             wszystkich tych wydarzeń (eventów) jakie rozegrały się
             w ciągu ostatniej klatki. Event jest obiektem, posiada więc
             różne metody i atrybuty.
-            
+
             Najprawdopodobniej zbiera on wszystkie wydarzenia, od czasu
             ostatniego użycia metody event.get(), ale jeszcze tego
             nie sprawdziłem. Najważniejsze, że nie zdarzyło mi się,
             by jakieś wydarzenie było przez tę metodę przegapione.
-            
+
             Przebiegamy wiec tę listę za pomocą pętli for, sprawdzamy
             wszystkie rzeczy jakie zrobił użytkownik, szukając czy któreś
             z nich nie powinno wpłynąć na grę."""
@@ -241,7 +241,7 @@ def game_loop():
 
             ##############################
             # Przechwytywnie wydarzeń.
-            
+
             if event.type == pygame.QUIT:
                 u"""Event jest obiektem, posiada jak swój atrybut swój typ.
                 Typ ten pobieramy przez event.type.
@@ -253,7 +253,7 @@ def game_loop():
 
                 Jeśli usuniemy ten warunek, kliknięcie w tego X w prawym
                 górnym rogu nic nie da."""
-                
+
                 play_game = False # Powinno być jasne, czemu to kończy grę.
 
 
@@ -284,7 +284,7 @@ def game_loop():
                 ##############################
                 # Skoro wiemy, że jakiś klawisz jest wciśnięty, sprawdźmy,
                 # czy coś robi.
-                
+
                 if event.key == pygame.K_LEFT:
                     u"""Sprawdzamy który klawisz został wciśnięty.
                     Jeśli jest to strzałka w lewo, to przesuniemy się
@@ -301,7 +301,7 @@ def game_loop():
                 if (event.key == pygame.K_LEFT) or (event.key == pygame.K_RIGHT):
                     u"""Jeśli puścimy strzałkę w lewo lub prawo, to musimy
                     zastopować ruch w kierunku x."""
-                    
+
                     delta_x = 0
 
 
@@ -337,7 +337,7 @@ def game_loop():
 
         ##############################
         # Wyświetlanie grafiki
-        
+
         u"""Jest kilka powodów dla których należy najpierw wszystko policzyć,
         utworzyć dane numeryczne wszystkich obiektów graficznych, a dopiero
         potem narysować nową klatkę animacji.
@@ -353,7 +353,7 @@ def game_loop():
         jednak gracz nie widzi, to nie jest bugiem. Dlatego jeżeli
         wykryjemy to zdarzenie przed wyświetleniem klatki na ekranie,
         to możemy je poprawić ręcznie i pokazać animację pozbawiony błędu.
-        
+
         Dlatego najpierw przechwytujemy działanie graczy, wykonujemy
         obliczenia AI, fizyki, oświetlenia, dokonujemy poprawek etc.,
         w wyniku których mamy gotowy zestaw danych i dopiero wtedy
@@ -391,4 +391,5 @@ u"""PyGame tak jak został włączony (zainicjalizowany), musi zostać
 odpowiednio wyłączony. Nie znam drugiego modułu Pythona, gdzie trzeba
 to robić."""
 
-quit() # Wychodzimy z Pythona. Ta opcja może się przydać.
+quit() # Wychodzimy z Pythona. Na wszelki wypadek lepiej umieścić
+# tę komendę w kodzie.
