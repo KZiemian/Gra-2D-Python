@@ -66,9 +66,9 @@ Mam nadzieję, że będzie się je Państwu dobrze czytało."""
 
 # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-u"""Pliki 03-05 ilustrują, jak zrobić w Pythonie prostą grę, pozbawioną
-co prawda fizyki, ale taką w którą można grać. Osoby niezainteresowane tym
-mogą je z czystym sumieniem pominąć."""
+u"""Pliki Gra_bazowa_03-05 ilustrują, jak zrobić w Pythonie prostą grę,
+pozbawioną co prawda fizyki, ale taką w którą można grać. Osoby
+niezainteresowane tym mogą je z czystym sumieniem pominąć."""
 
 
 
@@ -167,11 +167,11 @@ def hero(x, y):
     # bardzo krótka.
 
 
+
 # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 
-
-def things(thing_x, thing_y, thing_w, thing_h, color):
+def things(thing_x, thing_y, thing_width, thing_height, color):
     u"""Funkcja ta rysuje ,,coś'' jako prostokąt o położeniu
     (thing_x, thing_y), szerokości thing_w i wysokości thing_h
     oraz kolorze "color". Celem tej gry, będzie ich unikanie, gdy się
@@ -180,7 +180,8 @@ def things(thing_x, thing_y, thing_w, thing_h, color):
     W tej wersji najście na siebie ,,bohatera'' i ,,czegoś'' nie ma jeszcze
     żadnych konsekwencji. Aby coś się stało, potrzeba jeszcze trochę kodu."""
 
-    pygame.draw.rect(game_display, color, [thing_x, thing_y, thing_w, thing_h])
+    pygame.draw.rect(game_display, color, [thing_x, thing_y,
+                                           thing_width, thing_height])
 
 
 
@@ -317,7 +318,7 @@ def game_loop():
                 play_game = False # Powinno być jasne, czemu to kończy grę.
 
 
-            if event.type == pygame.KEYDOWN:
+                if event.type == pygame.KEYDOWN:
                 u"""Sprawdzamy czy jakiś klawisz został WCIŚNIĘTY. Jeżeli
                 WCIŚNIEMY jakiś klawisz i go przytrzymamy, to otrzymujemy
                 tylko jedno wydarzenie pygame.KEYDOWN, w tej klatce w której
@@ -365,9 +366,9 @@ def game_loop():
                     delta_x = 0
 
 
-        ###################################################################
-        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        # Ważne Ważne Ważne Ważne Ważne Ważne Ważne Ważne Ważne Ważne Ważne
+                    ###################################################################
+                    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    # Ważne Ważne Ważne Ważne Ważne Ważne Ważne Ważne Ważne Ważne Ważne
 
         # To jest fragment kodu, w którym zwykle będziemy programować fizykę.
 
