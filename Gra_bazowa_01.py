@@ -298,7 +298,8 @@ def game_loop():
             ##############################
             if event.type == pygame.KEYUP:
                 u"""Sprawdzamy czy puściliśmy jakiś klawisz."""
-                if (event.key == pygame.K_LEFT) or (event.key == pygame.K_RIGHT):
+                if (event.key == pygame.K_LEFT) \
+                   or (event.key == pygame.K_RIGHT):
                     u"""Jeśli puścimy strzałkę w lewo lub prawo, to musimy
                     zastopować ruch w kierunku x."""
 
@@ -387,9 +388,8 @@ game_loop() # Uruchamiamy grę, wywołując funkcję game_loop. Jedna gra
 # to jedno wywołanie tej funkcji.
 
 pygame.quit()
-u"""PyGame tak jak został włączony (zainicjalizowany), musi zostać
-odpowiednio wyłączony. Nie znam drugiego modułu Pythona, gdzie trzeba
-to robić."""
+u"""PyGame tak jak został włączony (zainicjalizowany),
+# musi zostać odpowiednio wyłączony. Nie znam drugiego modułu Pythona,
+# gdzie trzeba to robić."""
 
-quit() # Wychodzimy z Pythona. Na wszelki wypadek lepiej umieścić
-# tę komendę w kodzie.
+quit() # Wychodzimy z Pythona. Ta opcja może się przydać.
