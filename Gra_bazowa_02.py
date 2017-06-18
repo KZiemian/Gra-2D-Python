@@ -363,7 +363,7 @@ def game_loop():
             obu tych rzeczy na raz."""
             delta_x = 0.0
             x = 0.0
-        if x >= x_max:
+        elif x >= x_max:
             # Analogicznie jak poprzednie, tylko do prawej strony ekranu.
             delta_x = 0.0
             x = x_max
