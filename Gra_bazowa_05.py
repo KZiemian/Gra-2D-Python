@@ -151,7 +151,6 @@ hero_width = 140 # Wprowadzamy dwie zmienne, na rozmiar obrazka bohatera.
 hero_height = 100
 
 
-####################
 def hero(x, y):
     u"""Funkcja która rysuje ,,bohatera'' w zdanym punkcie.
 
@@ -168,7 +167,6 @@ def hero(x, y):
     # bardzo krótka.
 
 
-####################
 def things(thing_x, thing_y, thing_width, thing_height, color):
     u"""Funkcja ta rysuje ,,thing'' jako prostokąt o szerokości
     thing_width, wysokości thing_height oraz kolorze "color",
@@ -185,9 +183,7 @@ def things(thing_x, thing_y, thing_width, thing_height, color):
     # rect = rectangle
 
 
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-
+####################
 def text_objects(text, font, color = black):
     u"""Zwraca teksturę z napisanym na niej tekstem ,,text'' oraz prostokąt
     w którym zawiera się ta tekstura. Jeśli sami nie wybierzemy koloru
@@ -197,9 +193,6 @@ def text_objects(text, font, color = black):
 
     return text_surface, text_surface.get_rect()
 
-
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 
 def message_display(text):
     u"""Funkcja która wyświetla ,,text'' na ekranie."""
@@ -218,9 +211,7 @@ def message_display(text):
     # sprawi, że zostanie on wyświetlony na ekranie.
 
 
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-
+####################
 def crash():
     u"""Funkcja która uruchamia się gdy przegramy i wyświetla
     'Game Over'. Wygodnie jest zchować to zachowanie do funkcji,
@@ -512,9 +503,7 @@ def game_loop():
         # i w zadanym kolorze.
 
 
-        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-
+        ##############################
         u"""Sprawdzamy, czy nie doszło do kolizji z ,,thing''.
         Jest to trochę skomplikowane na pierwszy rzut oka,
         ale tak naprawdę chodzi o to by sprawdzić, czy dwa prostokąty się

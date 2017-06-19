@@ -66,7 +66,7 @@ Mam nadzieję, że będzie się je Państwu dobrze czytało."""
 
 # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-u"""Pliki Gra_bazowa_03-05 ilustrują, jak zrobić w Pythonie prostą grę,
+u"""Pliki Gra_bazowa_03-04 ilustrują, jak zrobić w Pythonie prostą grę,
 pozbawioną co prawda fizyki, ale taką w którą można grać. Osoby
 niezainteresowane tym mogą je z czystym sumieniem pominąć."""
 
@@ -151,6 +151,7 @@ hero_width = 140 # Wprowadzamy dwie zmienne, na rozmiar obrazka bohatera.
 # Nie wiem czy to najlepsze miejsce, na te zmienne.
 hero_height = 100
 
+
 def hero(x, y):
     u"""Funkcja która rysuje ,,bohatera'' w zdanym punkcie.
 
@@ -168,8 +169,8 @@ def hero(x, y):
 
 
 
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 
 def things(thing_x, thing_y, thing_width, thing_height, color):
     u"""Funkcja ta rysuje ,,thing'' jako prostokąt o szerokości
@@ -240,6 +241,11 @@ def game_loop():
     # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
     # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 
+    thing_speed = 7 # Jak szybko się ,,thing'' porusza.
+    thing_width = 100 # Jak jest szeroki.
+    thing_height = 100 # Jak jest wysoki.
+
+
     thing_start_x = random.randrange(0, display_width - thing_width)
     u"""Losujemy położenie ,,thing'' na osi x. Gdyby za każdym razem
     pojawiały się w tym samym miejscu, gra byłaby nudna, dlatego
@@ -247,16 +253,13 @@ def game_loop():
     Funkcja z tego modułu randrange generuje pseudolosową liczbę z zakresu
     od 0 do (display_width - thing_width)."""
 
+
     thing_start_y = -600
     u"""Na początku gry umieszczamy ,,thing'' trochę powyżej ekranu,
     tak by mieć chwilę czas na zrientowanie się o co chodzi.
 
     Dla porządku, resztę zmienny potrzebnych do rysowania ,,thing''
-    umieściłem ponieżej."""
-
-    thing_speed = 7 # Jak szybko się ,,thing'' porusza.
-    thing_width = 100 # Jak jest szeroki.
-    thing_height = 100 # Jak jest wysoki.
+    umieściłem poniżej."""
 
 
 
@@ -416,31 +419,6 @@ def game_loop():
             x = x_max
 
 
-        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-
-        u"""Sprawdzamy, czy ,,thing'' wyszło poza ekran. Jeśli tak,
-        to zapominamy o nim i tworzymy nowy nad ekranem w pseudolosowym
-        położeniu we współrzędnej x."""
-
-        if thing_start_y > display_height:
-            thing_start_y = -thing_height
-            # ,,Thing'' pojawi się teraz zaraz nad ekranem.
-            thing_start_x = random.randrange(0, display_width)
-            # Zobacz linia 244 i następne. Znowu, bez tego byłoby nudno.
-
-        things(thing_start_x, thing_start_y, thing_width, thing_height,
-               black)
-        # Rysujemy thing w zadanym położeniu, z zadanym rozmiarem
-        # i w zadanym kolorze.
-
-        thing_start_y += thing_speed
-        u"""Skoro narysowaliśmy już ,,thing'', gdzie chcieliśmy, to teraz
-        zmieniamy jego położenie w pionie tak, aby w następnej klatce
-        znalazł się niżej."""
-
-
-
         ##############################
         # Wyświetlanie grafiki
 
@@ -477,6 +455,32 @@ def game_loop():
         komputera, ale nie są wyświetlani na ekranie komputera. Dopiero
         poniższa komenda to robi."""
 
+
+        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
+        u"""Sprawdzamy, czy ,,thing'' wyszło poza ekran. Jeśli tak,
+        to zapominamy o nim i tworzymy nowy nad ekranem w pseudolosowym
+        położeniu we współrzędnej x."""
+
+        if thing_start_y > display_height:
+            thing_start_y = -thing_height
+            # ,,Thing'' pojawi się teraz zaraz nad ekranem.
+            thing_start_x = random.randrange(0, display_width - thing_width)
+            # Zobacz linia 244 i następne. Znowu, bez tego byłoby nudno.
+
+        things(thing_start_x, thing_start_y, thing_width, thing_height,
+               black)
+        # Rysujemy thing w zadanym położeniu, z zadanym rozmiarem
+        # i w zadanym kolorze.
+
+        thing_start_y += thing_speed
+        u"""Skoro narysowaliśmy już ,,thing'', gdzie chcieliśmy, to teraz
+        zmieniamy jego położenie w pionie tak, aby w następnej klatce
+        znalazł się niżej."""
+
+
+        ##############################
         pygame.display.update() # Upgraduje całe okno, czyli rysujemy
         # je od nowa na podstawie danych z powyższej części pętli.
 
