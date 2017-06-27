@@ -132,7 +132,7 @@ u"""Ładujemy do gry obrazek przedstawiający ,,bohatera'', który znajduje się
  trzeba będzie podawać ścieżkę dostępu. Zmieniając nazwę pliku zawierającego
  rysunek, proszę pamiętać, że musi się być zawarta w cudzysłowie.
  (To wszystko można zrobić w bardziej wyrafinowany sposób, ale ten komentarz
- został na pisany dla osób, które nie orientują się w tym wszystkim.)"""
+ został na pisany dla osób, które się nie orientują w tym wszystkim.)"""
 
 background_img = pygame.image.load('Tlo.png') # Ładujemy tło gry.
 
@@ -197,9 +197,9 @@ def game_loop():
     przywykłem do tych stosowanych w naukach fizycznych oraz matematyce
     i ich właśnie używam. Jak powiedziałem, nie wiem czy są dobre jeśli
     chodzi o standardy gamedevu, ale mają tę zaletę, że zwykle pozostają się
-    w zgodzie z oznaczeniami wzorów, które zwykle się Państwu wygooglują."""
+    w zgodzie z oznaczeniami wzorów, które zwykle się Państwu wygooglują.
 
-    u"""Animację ruchu w grze tworzymy, poprzez rysowanie obiektów w każdej
+    Animację ruchu w grze tworzymy, poprzez rysowanie obiektów w każdej
     klatce w innym miejscu. A w jakim miejscu mamy jej narysować? To zależy
     od decyzji gracza i praw fizyki, o czym jest cały ten kurs;)."""
 

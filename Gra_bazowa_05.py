@@ -172,15 +172,25 @@ def things(thing_x, thing_y, thing_width, thing_height, color):
     thing_width, wysokości thing_height oraz kolorze "color",
     którego lewy górny róg znajduje się w położeniu (thing_x, thing_y).
     Celem tej gry, będzie unikanie tych obiektów, gdy się z jednym zderzymy,
-    game over.
-
-    W tej wersji najście na siebie ,,bohatera'' i ,,things'' nie ma
-    żadnych konsekwencji. Żeby coś z tego wynikało potrzeba jeszcze trochę
-    kodu."""
+    game over."""
 
     pygame.draw.rect(game_display, color, [thing_x, thing_y,
                                            thing_width, thing_height])
     # rect = rectangle
+
+
+
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+def things_dodged(count):
+    u"""Funkcja do wyświetlania naszy wyników w grze, na podstawie ilości
+    ,,thingów'' któruch już uniknęliśmy. Ilość uników jest zawarta w zmiennej
+    COUNT. Nasze wyniki zostanę one pokazane w lewym górnym rogu ekranu."""
+    font = pygame.font.SysFont(None, 25) # Skomplikowana instrukcja,
+    # by zapisać w zmiennej FONT domyślną systemową trzcionkę o rozmiarze 25.
+    text = font.render("Doged:" + str(count), True, black)
+    # Za pomocą zmiennej FONT tworzymy napis jaki zaraz zostanie wyświetlony.
+    game_display.blit(text, (0, 0))
 
 
 ####################
@@ -203,7 +213,7 @@ def message_display(text):
     text_rect.center = ((display_width / 2), (display_height / 2))
     # Umieszczamy prostokąt w środku ekranu.
     game_display.blit(text_surf, text_rect)
-    # Więcej komentarzy jest w linii 3??. Ogólnie chodzi o to,
+    # Więcej komentarzy jest w linii 482-507. Ogólnie chodzi o to,
     # że w pamięci komputera tworzymy żądany napis.
 
     pygame.display.update()
@@ -212,7 +222,7 @@ def message_display(text):
 
 
 ####################
-def crash():
+def crash_info():
     u"""Funkcja która uruchamia się gdy przegramy i wyświetla
     'Game Over'. Wygodnie jest zchować to zachowanie do funkcji,
     w ten sposób będzie można wygodnie je zmienić."""
@@ -256,9 +266,9 @@ def game_loop():
     przywykłem do tych stosowanych w naukach fizycznych oraz matematyce
     i ich właśnie używam. Jak powiedziałem, nie wiem czy są dobre jeśli
     chodzi o standardy gamedevu, ale mają tę zaletę, że zwykle pozostają się
-    w zgodzie z oznaczeniami wzorów, które zwykle się Państwu wygooglują."""
+    w zgodzie z oznaczeniami wzorów, które zwykle się Państwu wygooglują.
 
-    u"""Animację ruchu w grze tworzymy, poprzez rysowanie obiektów w każdej
+    Animację ruchu w grze tworzymy, poprzez rysowanie obiektów w każdej
     klatce w innym miejscu. A w jakim miejscu mamy jej narysować? To zależy
     od decyzji gracza i praw fizyki, o czym jest cały ten kurs;)."""
 
@@ -275,6 +285,17 @@ def game_loop():
     thing_height = 100 # Jak jest wysoki.
 
 
+    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+    floor_height = x + hero_height
+    u"""Jest sensowne, że gdy blok minie linię ,,podłogi'' na której
+    spoczywa bohater, to punkatcja powinna być zwiększona o 1.
+    Ta zmienna przechowuje wyskość tej ,,podłogi''."""
+
+    above_floor = True # Zmienna która przechowuje informację, czy
+    # ,,thing'' jest nad podgłogą.
+
+
     thing_start_x = random.randrange(0, display_width - thing_width)
     u"""Losujemy położenie ,,thing'' na osi x. Gdyby za każdym razem
     pojawiały się w tym samym miejscu, gra byłaby nudna, dlatego
@@ -289,6 +310,12 @@ def game_loop():
 
     Dla porządku, resztę zmienny potrzebnych do rysowania ,,thing''
     umieściłem poniżej."""
+
+
+    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
+    dodged = 0 # Zmienna zliczająca ilu ,,thingów'' już uniknęliśmy.
 
 
 
@@ -491,11 +518,33 @@ def game_loop():
         to zapominamy o nim i tworzymy nowy nad ekranem w pseudolosowym
         położeniu we współrzędnej x."""
 
+
+        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
+        if (thing_start_y > floor_height) and above_floor:
+            u"""Jeśli ten warunek się wykona, to znaczy, że ,,thing''
+            minął poziom ,,podłogi'', czyli należy zwiększyć punktację.
+
+            Ustawiamy też zmienną ABOVE_FLOOR na False, aby licznik nie
+            nabijał się w każdej następnej klatce, gdy ,,thing'' jest
+            pod podłagą. Czy potrzebny jest większy kometarz?"""
+            dodged += 1
+            above_floor = False
+
+
+
+        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
         if thing_start_y > display_height:
             thing_start_y = -thing_height
-            # ,,Thing'' pojawi się teraz zaraz nad ekranem.
+            above_floor = True
+            u""",,Thing'' pojawi się teraz zaraz nad ekranem. Od razu więc
+            zmieniamy zmienną ABOVE_FLOOR na True, bo teraz ,,thing''
+            tam się właśnie znajduje."""
             thing_start_x = random.randrange(0, display_width)
-            # Zobacz linia 2?? i następne. Znowu, bez tego byłoby nudno.
+            # Zobacz linia 299 i następne. Znowu, bez tego byłoby nudno.
+
 
         things(thing_start_x, thing_start_y, thing_width, thing_height,
                black)
@@ -516,8 +565,15 @@ def game_loop():
         # Warunki boolowskie na zderzenie dwóch prostokątów.
 
         if x_bool and y_bool: # Zgadli Państwo co ten warunek robi?
-            crash()
+            crash_info()
             play_game = False
+
+
+        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
+        things_dodged(dodged) # Wyświetlamy wynika na ekranie.
+
 
 
         ####################

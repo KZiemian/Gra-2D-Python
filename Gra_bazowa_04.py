@@ -174,11 +174,7 @@ def things(thing_x, thing_y, thing_width, thing_height, color):
     thing_width, wysokości thing_height oraz kolorze "color",
     którego lewy górny róg znajduje się w położeniu (thing_x, thing_y).
     Celem tej gry, będzie unikanie tych obiektów, gdy się z jednym zderzymy,
-    game over.
-
-    W tej wersji najście na siebie ,,bohatera'' i ,,things'' nie ma
-    żadnych konsekwencji. Żeby coś z tego wynikało potrzeba jeszcze trochę
-    kodu."""
+    game over."""
 
     pygame.draw.rect(game_display, color, [thing_x, thing_y,
                                            thing_width, thing_height])
@@ -210,7 +206,7 @@ def message_display(text):
     text_rect.center = ((display_width / 2), (display_height / 2))
     # Umieszczamy prostokąt w środku ekranu.
     game_display.blit(text_surf, text_rect)
-    # Więcej komentarzy jest w linii 3??. Ogólnie chodzi o to,
+    # Więcej komentarzy jest w liniach 460-491. Ogólnie chodzi o to,
     # że w pamięci komputera tworzymy żądany napis.
 
     pygame.display.update()
@@ -221,7 +217,7 @@ def message_display(text):
 # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 
-def crash():
+def crash_info():
     u"""Funkcja która uruchamia się gdy przegramy i wyświetla
     'Game Over'. Wygodnie jest zchować to zachowanie do funkcji,
     w ten sposób będzie można wygodnie je zmienić."""
@@ -265,9 +261,9 @@ def game_loop():
     przywykłem do tych stosowanych w naukach fizycznych oraz matematyce
     i ich właśnie używam. Jak powiedziałem, nie wiem czy są dobre jeśli
     chodzi o standardy gamedevu, ale mają tę zaletę, że zwykle pozostają się
-    w zgodzie z oznaczeniami wzorów, które zwykle się Państwu wygooglują."""
+    w zgodzie z oznaczeniami wzorów, które zwykle się Państwu wygooglują.
 
-    u"""Animację ruchu w grze tworzymy, poprzez rysowanie obiektów w każdej
+    Animację ruchu w grze tworzymy, poprzez rysowanie obiektów w każdej
     klatce w innym miejscu. A w jakim miejscu mamy jej narysować? To zależy
     od decyzji gracza i praw fizyki, o czym jest cały ten kurs;)."""
 
@@ -504,7 +500,7 @@ def game_loop():
             thing_start_y = -thing_height
             # ,,Thing'' pojawi się teraz zaraz nad ekranem.
             thing_start_x = random.randrange(0, display_width)
-            # Zobacz linia 2?? i następne. Znowu, bez tego byłoby nudno.
+            # Zobacz linia 283 i następne. Znowu, bez tego byłoby nudno.
 
         things(thing_start_x, thing_start_y, thing_width, thing_height,
                black)
@@ -527,7 +523,7 @@ def game_loop():
         # Warunki boolowskie na zderzenie dwóch prostokątów.
 
         if x_bool and y_bool: # Zgadli Państwo co ten warunek robi?
-            crash()
+            crash_info()
             play_game = False
 
 
