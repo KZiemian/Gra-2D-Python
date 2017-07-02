@@ -70,6 +70,11 @@ pozbawioną co prawda fizyki, ale taką w którą można grać. Osoby
 niezainteresowane tym mogą je z czystym sumieniem pominąć."""
 
 
+####################
+u"""Problem wychodzenia z gry funkcją game_quit() nie jest chyba zbyt
+elegancko zrobiony. Przemyśl i spróbuj poprawić."""
+
+
 
 
 ######################################################################
@@ -104,6 +109,14 @@ trzeci niebieskiego (B)."""
 black = (0, 0, 0) # Nie ma nic, ciemno.
 white = (255, 255, 255) # Kolor biały to suma wszystkich kolorów.
 red = (255, 0, 0)
+
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
+green = (0, 200, 0) # Przyda się kolor zielony.
+bright_green = (0, 255, 0)
+dark_red = (200, 0, 0)
+
 
 
 ##############################
@@ -180,11 +193,11 @@ def things(thing_x, thing_y, thing_width, thing_height, color):
 
 
 def things_dodged(count):
-    u"""Funkcja do wyświetlania naszy wyników w grze, na podstawie ilości
-    ,,thingów'' któruch już uniknęliśmy. Ilość uników jest zawarta w zmiennej
+    u"""Funkcja do wyświetlania naszych wyników w grze, na podstawie ilości
+    ,,thingów'' których już uniknęliśmy. Ilość uników jest zawarta w zmiennej
     COUNT. Nasze wyniki zostanę one pokazane w lewym górnym rogu ekranu."""
     font = pygame.font.SysFont(None, 25) # Skomplikowana instrukcja,
-    # by zapisać w zmiennej FONT domyślną systemową trzcionkę o rozmiarze 25.
+    # by zapisać w zmiennej FONT domyślną systemową czcionkę o rozmiarze 25.
     text = font.render("Doged:" + str(count), True, black)
     # Za pomocą zmiennej FONT tworzymy napis jaki zaraz zostanie wyświetlony.
     game_display.blit(text, (0, 0))
@@ -204,7 +217,7 @@ def text_objects(text, font, color = black):
 def message_display(text):
     u"""Funkcja która wyświetla ,,text'' na ekranie."""
     large_text = pygame.font.Font('freesansbold.ttf', 115)
-    # Dość skoplikowany sposób by wybrać czcionkę 'freesansbold.ttf'
+    # Dość skomplikowany sposób by wybrać czcionkę 'freesansbold.ttf'
     # o rozmiarze 115.
     text_surf, text_rect = text_objects(text, large_text)
     text_rect.center = ((display_width / 2), (display_height / 2))
@@ -221,7 +234,7 @@ def message_display(text):
 ####################
 def crash_info():
     u"""Funkcja która uruchamia się gdy przegramy i wyświetla
-    'Game Over'. Wygodnie jest zchować to zachowanie do funkcji,
+    'Game Over'. Wygodnie jest schować to zachowanie do funkcji,
     w ten sposób będzie można wygodnie je zmienić."""
     message_display('Game Over')
 
@@ -229,7 +242,69 @@ def crash_info():
 # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 
-def game_intro():
+def button(msg, x, y, width, height, in_color, ac_color, action = None):
+    u"""Funkcja która definiuje przycisk w menu gry. Przycisk ma kształt
+    prostokąta, którego kolor się zmienia, zależnie od tego, czy myszka
+    jest nad nim, czy nie.
+
+    Argumenty funkcji.
+    MSG (msg) = message.
+    X, Y (x, y) = położenie w którym narysowany przycisk (lewy górny róg).
+    WIDTH (width) = szerokość prostokąta.
+    HEIGHT (height) = wysokość prostokąta.
+    IA_COLOR (ia_color) = inactive color.
+    AC_COLOR (ac_color) = active color.
+    ACTION (action)."""
+
+    u"""Teraz zdefiniujemy przyciski do obsługi manu głównego.
+
+    Poniższy warunek spradza czy myszka jest nad obszarem
+    który zajmuje/defniuje przycisk. Jeśli tak to rysujemy
+    go w jaśniejszym kolorze, jeśli nie to w ciemniejszym."""
+
+    width_half = width / 2
+    height_half = height / 2
+
+    mouse = pygame.mouse.get_pos() # Zwraca dwuelementową krotkę
+    # (int x, int y), która opisuje położenie myszki.
+    click = pygame.mouse.get_pressed()
+    u"""Zwraca krotkę trójelementową (int l, int c, int r). Jeśli pierwszy
+    element jest równy 1, oznacza to, że został wciśnięty lewy klawisz
+    myszki, w przeciwnym razie wynosi 0. Analogicznie drugi element
+    odpowiada za klawisz środkowy, a ostatni za prawy klawisz myszki."""
+
+    u"""Teraz zdefiniujemy przyciski do obsługi manu głównego.
+
+    Poniższy warunek spradza czy myszka jest nad obszarem
+    który zajmuje/defniuje przycisk. Jeśli tak to rysujemy
+    go w jaśniejszym kolorze, jeśli nie to w ciemniejszym."""
+
+    if (x < mouse[0] < (x + width)) \
+       and (y < mouse[1] < (y + height)):
+        pygame.draw.rect(game_display, ac_color, (x, y, width, height))
+        u"""Krotka reprezentuje (położenie_x, położenie_y, szerokość,
+        wysokość). Położenie definiuje, gdzie będzie lewy górny róg.
+        To już było, ale warto przypomnieć."""
+
+        if (click[0] == 1) and (action != None):
+            u"""Sprawdzamy, czy przycisk został kliknięty lewy klawiszem
+            myszki i czy jakaś akcja została przesłana do funkcji.
+            Jeśli tak, to ją wykonujemy."""
+            action()
+
+    else:
+        pygame.draw.rect(game_display, in_color, (x, y, width, height))
+
+    small_text = pygame.font.Font("freesansbold.ttf", 20)
+    text_surf, text_rect = text_objects(msg, small_text)
+    text_rect.center = (x + width_half, y + height_half)
+    game_display.blit(text_surf, text_rect)
+
+
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
+def game_menu():
     intro = True
 
     while intro:
@@ -243,11 +318,28 @@ def game_intro():
         text_surf, text_rect = text_objects("Gra w uniki", large_text)
         text_rect.center = ((display_width / 2), (display_height / 2))
         game_display.blit(text_surf, text_rect)
-        pygame.display.update()
         # To wszystko już było, myślę więc, że nie potrzeba komentarza.
 
-        clock.tick(15) # Czyli ta pętla wykona się 15 razy na sekundę.
+        button("GO!", 150, 450, 100, 50, green, bright_green, game_loop)
+        button("Quit", 550, 450, 100, 50, dark_red, red, game_quit)
 
+        pygame.display.update()
+
+        clock.tick(15)
+
+
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
+def game_quit():
+    u"""Funkcja do wyłączania gry."""
+
+    pygame.quit()
+    u"""PyGame tak jak został włączony (zainicjalizowany), musi zostać
+    odpowiednio wyłączony. Nie znam drugiego modułu Pythona, gdzie trzeba
+    to robić."""
+
+    quit() # Wychodzimy z Pythona. Ta opcja może się przydać.
 
 
 
@@ -308,8 +400,8 @@ def game_loop():
 
     floor_height = x + hero_height
     u"""Jest sensowne, że gdy blok minie linię ,,podłogi'' na której
-    spoczywa bohater, to punkatcja powinna być zwiększona o 1.
-    Ta zmienna przechowuje wyskość tej ,,podłogi''."""
+    spoczywa bohater, to punktacja powinna być zwiększona o 1.
+    Ta zmienna przechowuje wysokość tej ,,podłogi''."""
 
     above_floor = True # Zmienna która przechowuje informację, czy
     # ,,thing'' jest nad podgłogą.
@@ -341,11 +433,6 @@ def game_loop():
     play_game = True # W grę gramy, dopóki ta zmienna ma wartość True.
     # Całkiem logiczne.
 
-
-    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-
-    game_intro() # Włączamy intro
 
     ##############################
     # Kluczowa pętla gry.
@@ -605,17 +692,17 @@ def game_loop():
         # czyli ile razy zegar ma tyknąć w tym czasie.
 
 
+    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
+    game_quit()
+
 
 ######################################################################
 ######################################################################
 
 
-game_loop() # Uruchamiamy grę, wywołując funkcję game_loop. Jedna gra
-# to jedno wywołanie tej funkcji.
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 
-pygame.quit()
-u"""PyGame tak jak został włączony (zainicjalizowany),
-# musi zostać odpowiednio wyłączony. Nie znam drugiego modułu Pythona,
-# gdzie trzeba to robić."""
-
-quit() # Wychodzimy z Pythona. Ta opcja może się przydać.
+game_menu() # Włączamy intro
