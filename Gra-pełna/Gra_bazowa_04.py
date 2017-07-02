@@ -106,6 +106,14 @@ white = (255, 255, 255) # Kolor biały to suma wszystkich kolorów.
 red = (255, 0, 0)
 
 
+large_text = pygame.font.Font('freesansbold.ttf', 115)
+u"""Dość skoplikowany sposób by wybrać czcionkę 'freesansbold.ttf'
+o rozmiarze 115. Przyda nam się do wyświetlania tekstu na ekranie.
+Tekst będzie oczywiście napisany tą czcionką, ale o jego treści zdecydujemy
+później."""
+
+
+
 ##############################
 # Parametry wyświetlanego obrazu
 
@@ -188,6 +196,7 @@ def text_objects(text, font, color = black):
     u"""Zwraca teksturę z napisanym na niej tekstem ,,text'' oraz prostokąt
     w którym zawiera się ta tekstura. Jeśli sami nie wybierzemy koloru
     tekstu, to będzie on czarny."""
+
     text_surface = font.render(text, True, color) # Tworzymy teksturę
     # z napisem.
 
@@ -199,9 +208,7 @@ def text_objects(text, font, color = black):
 
 def message_display(text):
     u"""Funkcja która wyświetla ,,text'' na ekranie."""
-    large_text = pygame.font.Font('freesansbold.ttf', 115)
-    # Dość skoplikowany sposób by wybrać czcionkę 'freesansbold.ttf'
-    # o rozmiarze 115.
+
     text_surf, text_rect = text_objects(text, large_text)
     text_rect.center = ((display_width / 2), (display_height / 2))
     # Umieszczamy prostokąt w środku ekranu.

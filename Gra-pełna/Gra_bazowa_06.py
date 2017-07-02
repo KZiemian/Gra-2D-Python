@@ -117,6 +117,16 @@ green = (0, 200, 0) # Przyda się kolor zielony.
 bright_green = (0, 255, 0)
 dark_red = (200, 0, 0)
 
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
+small_text = pygame.font.Font("freesansbold.ttf", 20)
+large_text = pygame.font.Font('freesansbold.ttf', 115)
+u"""Dość skoplikowany sposób by wybrać czcionkę 'freesansbold.ttf'
+o rozmiarze 115. Przyda nam się do wyświetlania tekstu na ekranie.
+Tekst będzie oczywiście napisany tą czcionką, ale o jego treści zdecydujemy
+później."""
+
 
 
 ##############################
@@ -216,9 +226,7 @@ def text_objects(text, font, color = black):
 
 def message_display(text):
     u"""Funkcja która wyświetla ,,text'' na ekranie."""
-    large_text = pygame.font.Font('freesansbold.ttf', 115)
-    # Dość skomplikowany sposób by wybrać czcionkę 'freesansbold.ttf'
-    # o rozmiarze 115.
+
     text_surf, text_rect = text_objects(text, large_text)
     text_rect.center = ((display_width / 2), (display_height / 2))
     # Umieszczamy prostokąt w środku ekranu.
@@ -295,7 +303,6 @@ def button(msg, x, y, width, height, in_color, ac_color, action = None):
     else:
         pygame.draw.rect(game_display, in_color, (x, y, width, height))
 
-    small_text = pygame.font.Font("freesansbold.ttf", 20)
     text_surf, text_rect = text_objects(msg, small_text)
     text_rect.center = (x + width_half, y + height_half)
     game_display.blit(text_surf, text_rect)
