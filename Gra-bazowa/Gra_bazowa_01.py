@@ -240,7 +240,7 @@ def game_loop():
 
 
             ##############################
-            # Przechwytywnie wydarzeń.
+            # Przechwytywanie wydarzeń.
 
             if event.type == pygame.QUIT:
                 u"""Event jest obiektem, posiada jak swój atrybut swój typ.
@@ -361,7 +361,7 @@ def game_loop():
         go wyświetlamy. Nawet utworzenie danych odnośnie obiektów graficznych
         lepiej jest zrobić przed załadowaniem wszystkiego na ekran."""
 
-        # gameDisplay.fill(white) # W pamięci komputera ,,wypełniamy'' tło
+        # game_display.fill(white) # W pamięci komputera ,,wypełniamy'' tło
         # kolorem białym.
         game_display.blit(background_img, (0, 0)) # W pamięci komputera
         # rysujemy tło gry.
@@ -388,8 +388,8 @@ game_loop() # Uruchamiamy grę, wywołując funkcję game_loop. Jedna gra
 # to jedno wywołanie tej funkcji.
 
 pygame.quit()
-u"""PyGame tak jak został włączony (zainicjalizowany),
-# musi zostać odpowiednio wyłączony. Nie znam drugiego modułu Pythona,
-# gdzie trzeba to robić."""
+u"""PyGame tak jak został włączony (zainicjalizowany), musi zostać
+odpowiednio wyłączony. Nie znam drugiego modułu Pythona, gdzie trzeba
+to robić."""
 
 quit() # Wychodzimy z Pythona. Ta opcja może się przydać.
