@@ -64,7 +64,8 @@ powłoki czy programu informacje o danej funkcji czy klasie.
 Mam nadzieję, że będzie się je Państwu dobrze czytało."""
 
 
-
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
 u"""Pliki Gra_bazowa_03-04 ilustrują, jak zrobić w Pythonie prostą grę,
 pozbawioną co prawda fizyki, ale taką w którą można grać. Osoby
 niezainteresowane tym mogą je z czystym sumieniem pominąć."""
@@ -140,7 +141,7 @@ u"""Ładujemy do gry obrazek przedstawiający ,,bohatera'', który znajduje się
  trzeba będzie podawać ścieżkę dostępu. Zmieniając nazwę pliku zawierającego
  rysunek, proszę pamiętać, że musi się być zawarta w cudzysłowie.
  (To wszystko można zrobić w bardziej wyrafinowany sposób, ale ten komentarz
- został na pisany dla osób, które nie orientują się w tym wszystkim.)"""
+ został na pisany dla osób, które się nie orientują w tym wszystkim.)"""
 
 background_img = pygame.image.load('Tlo.png') # Ładujemy tło gry.
 
@@ -167,66 +168,24 @@ def hero(x, y):
     # bardzo krótka.
 
 
+
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
 def things(thing_x, thing_y, thing_width, thing_height, color):
     u"""Funkcja ta rysuje ,,thing'' jako prostokąt o szerokości
     thing_width, wysokości thing_height oraz kolorze "color",
     którego lewy górny róg znajduje się w położeniu (thing_x, thing_y).
     Celem tej gry, będzie unikanie tych obiektów, gdy się z jednym zderzymy,
-    game over."""
+    game over.
+
+    W tej wersji najście na siebie ,,bohatera'' i ,,things'' nie ma
+    żadnych konsekwencji. Żeby coś z tego wniknęło potrzeba jeszcze trochę
+    kodu."""
 
     pygame.draw.rect(game_display, color, [thing_x, thing_y,
                                            thing_width, thing_height])
     # rect = rectangle
-
-
-
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-# Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-def things_dodged(count):
-    u"""Funkcja do wyświetlania naszych wyników w grze, na podstawie ilości
-    ,,thingów'' których już uniknęliśmy. Ilość uników jest zawarta w zmiennej
-    COUNT. Nasze wyniki zostanę one pokazane w lewym górnym rogu ekranu."""
-    font = pygame.font.SysFont(None, 25) # Skomplikowana instrukcja,
-    # by zapisać w zmiennej FONT domyślną systemową czcionkę o rozmiarze 25.
-    text = font.render("Doged:" + str(count), True, black)
-    # Za pomocą zmiennej FONT tworzymy napis jaki zaraz zostanie wyświetlony.
-    game_display.blit(text, (0, 0))
-
-
-####################
-def text_objects(text, font, color = black):
-    u"""Zwraca teksturę z napisanym na niej tekstem ,,text'' oraz prostokąt
-    w którym zawiera się ta tekstura. Jeśli sami nie wybierzemy koloru
-    tekstu, to będzie on czarny."""
-    text_surface = font.render(text, True, color) # Tworzymy teksturę
-    # z napisem.
-
-    return text_surface, text_surface.get_rect()
-
-
-def message_display(text):
-    u"""Funkcja która wyświetla ,,text'' na ekranie."""
-    large_text = pygame.font.Font('freesansbold.ttf', 115)
-    # Dość skomplikowany sposób by wybrać czcionkę 'freesansbold.ttf'
-    # o rozmiarze 115.
-    text_surf, text_rect = text_objects(text, large_text)
-    text_rect.center = ((display_width / 2), (display_height / 2))
-    # Umieszczamy prostokąt w środku ekranu.
-    game_display.blit(text_surf, text_rect)
-    # Więcej komentarzy jest w linii 482-507. Ogólnie chodzi o to,
-    # że w pamięci komputera tworzymy żądany napis.
-
-    pygame.display.update()
-    # Choć nowa klatka jest już w pamięci, to dopiero updejtowanie obrazu
-    # sprawi, że zostanie on wyświetlony na ekranie.
-
-
-####################
-def crash_info():
-    u"""Funkcja która uruchamia się gdy przegramy i wyświetla
-    'Game Over'. Wygodnie jest schować to zachowanie do funkcji,
-    w ten sposób będzie można wygodnie je zmienić."""
-    message_display('Game Over')
 
 
 
@@ -279,21 +238,12 @@ def game_loop():
     delta_y = 0
 
 
-    ####################
+    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
     thing_speed = 7 # Jak szybko się ,,thing'' porusza.
     thing_width = 100 # Jak jest szeroki.
     thing_height = 100 # Jak jest wysoki.
-
-
-    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-    floor_height = x + hero_height
-    u"""Jest sensowne, że gdy blok minie linię ,,podłogi'' na której
-    spoczywa bohater, to punktacja powinna być zwiększona o 1.
-    Ta zmienna przechowuje wysokość tej ,,podłogi''."""
-
-    above_floor = True # Zmienna która przechowuje informację, czy
-    # ,,thing'' jest nad podłogą.
 
 
     thing_start_x = random.randrange(0, display_width - thing_width)
@@ -306,16 +256,10 @@ def game_loop():
 
     thing_start_y = -600
     u"""Na początku gry umieszczamy ,,thing'' trochę powyżej ekranu,
-    tak by mieć chwilę czasu na zorientowanie się o co chodzi.
+    tak by mieć chwilę czas na zorientowanie się o co chodzi.
 
     Dla porządku, resztę zmienny potrzebnych do rysowania ,,thing''
     umieściłem poniżej."""
-
-
-    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-    # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-
-    dodged = 0 # Zmienna zliczająca ilu ,,thingów'' już uniknęliśmy.
 
 
 
@@ -361,7 +305,7 @@ def game_loop():
 
 
             ##############################
-            # Przechwytywanie wydarzeń.
+            # Przechwytywnie wydarzeń.
 
             if event.type == pygame.QUIT:
                 u"""Event jest obiektem, posiada jak swój atrybut swój typ.
@@ -475,7 +419,6 @@ def game_loop():
             x = x_max
 
 
-
         ##############################
         # Wyświetlanie grafiki
 
@@ -513,73 +456,26 @@ def game_loop():
         poniższa komenda to robi."""
 
 
-        ##############################
+        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
+
         u"""Sprawdzamy, czy ,,thing'' wyszło poza ekran. Jeśli tak,
         to zapominamy o nim i tworzymy nowy nad ekranem w pseudolosowym
         położeniu we współrzędnej x."""
 
-
-        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-
-        if (thing_start_y > floor_height) and above_floor:
-            u"""Jeśli ten warunek się wykona, to znaczy, że ,,thing''
-            minął poziom ,,podłogi'', czyli należy zwiększyć punktację.
-
-            Ustawiamy też zmienną ABOVE_FLOOR na False, aby licznik nie
-            nabijał się w każdej następnej klatce, gdy ,,thing'' jest
-            pod podłogą. Czy potrzebny jest większy komentarz?"""
-            dodged += 1
-            above_floor = False
-
-
-
-        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
         if thing_start_y > display_height:
             thing_start_y = -thing_height
-            above_floor = True
-            u""",,Thing'' pojawi się teraz zaraz nad ekranem. Od razu więc
-            zmieniamy zmienną ABOVE_FLOOR na True, bo teraz ,,thing''
-            tam się właśnie znajduje."""
-            thing_start_x = random.randrange(0, display_width)
-            # Zobacz linia 299 i następne. Znowu, bez tego byłoby nudno.
-
+            # ,,Thing'' pojawi się teraz zaraz nad ekranem.
+            thing_start_x = random.randrange(0, display_width - thing_width)
+            # Zobacz linia 244 i następne. Znowu, bez tego byłoby nudno.
 
         things(thing_start_x, thing_start_y, thing_width, thing_height,
                black)
         # Rysujemy thing w zadanym położeniu, z zadanym rozmiarem
         # i w zadanym kolorze.
 
-
-        ##############################
-        u"""Sprawdzamy, czy nie doszło do kolizji z ,,thing''.
-        Jest to trochę skomplikowane na pierwszy rzut oka,
-        ale tak naprawdę chodzi o to by sprawdzić, czy dwa prostokąty się
-        przecięły."""
-
-        x_bool = (thing_start_x < (x + hero_width)) \
-                 and ((thing_start_x + thing_width) > x)
-        y_bool = ((thing_start_y + thing_height) > y) \
-                 and (thing_start_y < (y + thing_height))
-        # Warunki boolowskie na zderzenie dwóch prostokątów.
-
-        if x_bool and y_bool: # Zgadli Państwo co ten warunek robi?
-            crash_info()
-            play_game = False
-
-
-        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-        # Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe Nowe
-
-        things_dodged(dodged) # Wyświetlamy wynika na ekranie.
-
-
-
-        ####################
         thing_start_y += thing_speed
-        u"""Skoro narysowaliśmy już ,,thing''  gdzie chcieliśmy
-        i sprawdziliśmy, że nie ma kolizji z ,,bohaterem'', to teraz
+        u"""Skoro narysowaliśmy już ,,thing'', gdzie chcieliśmy, to teraz
         zmieniamy jego położenie w pionie tak, aby w następnej klatce
         znalazł się niżej."""
 
@@ -601,8 +497,8 @@ game_loop() # Uruchamiamy grę, wywołując funkcję game_loop. Jedna gra
 # to jedno wywołanie tej funkcji.
 
 pygame.quit()
-u"""PyGame tak jak został włączony (zainicjalizowany), musi zostać
-odpowiednio wyłączony. Nie znam drugiego modułu Pythona, gdzie trzeba
-to robić."""
+u"""PyGame tak jak został włączony (zainicjalizowany),
+# musi zostać odpowiednio wyłączony. Nie znam drugiego modułu Pythona,
+# gdzie trzeba to robić."""
 
 quit() # Wychodzimy z Pythona. Ta opcja może się przydać.
